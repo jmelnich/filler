@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.c                                           :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imelnych <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/07 13:49:53 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/07 19:08:14 by imelnych         ###   ########.fr       */
+/*   Created: 2017/10/23 11:53:15 by imelnych          #+#    #+#             */
+/*   Updated: 2018/01/11 14:11:26 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// ◦ perror
-// ◦ strerror
-#include "filler.h"
+#include "printflib.h"
 
-int main(void)
+void	ft_putstr(char const *s)
 {
-    printf("%i", STDIN_FILENO);
-	return(1);
+	int i;
+
+	i = 0;
+	if (s)
+	{
+		while (s[i] != '\0')
+			write(1, &s[i++], 1);
+	}
 }

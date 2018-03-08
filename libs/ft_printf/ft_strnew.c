@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.c                                           :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imelnych <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/07 13:49:53 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/07 19:08:14 by imelnych         ###   ########.fr       */
+/*   Created: 2017/10/21 15:21:34 by imelnych          #+#    #+#             */
+/*   Updated: 2018/01/04 16:06:56 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// ◦ perror
-// ◦ strerror
-#include "filler.h"
+#include "printflib.h"
 
-int main(void)
+char	*ft_strnew(size_t size)
 {
-    printf("%i", STDIN_FILENO);
-	return(1);
+	char *str;
+
+	str = (char*)malloc(size + 1);
+	if (!str)
+		return (NULL);
+	ft_bzero(str, size + 1);
+	return (str);
 }

@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.c                                           :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imelnych <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/07 13:49:53 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/07 19:08:14 by imelnych         ###   ########.fr       */
+/*   Created: 2017/10/17 10:53:58 by imelnych          #+#    #+#             */
+/*   Updated: 2018/01/04 16:08:11 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// ◦ perror
-// ◦ strerror
-#include "filler.h"
+#include "printflib.h"
 
-int main(void)
+void	ft_bzero(void *s, size_t n)
 {
-    printf("%i", STDIN_FILENO);
-	return(1);
+	size_t i;
+
+	i = 0;
+	while (i < n)
+	{
+		((char*)s)[i] = '\0';
+		i++;
+	}
 }

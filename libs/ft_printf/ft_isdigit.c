@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.c                                           :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imelnych <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/07 13:49:53 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/07 19:08:14 by imelnych         ###   ########.fr       */
+/*   Created: 2017/10/21 10:18:14 by imelnych          #+#    #+#             */
+/*   Updated: 2018/01/05 16:15:29 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// ◦ perror
-// ◦ strerror
-#include "filler.h"
+#include "printflib.h"
 
-int main(void)
+int	ft_isdigit(char c)
 {
-    printf("%i", STDIN_FILENO);
-	return(1);
+	if ((c > 47) && (c < 58))
+		return (1);
+	return (0);
 }

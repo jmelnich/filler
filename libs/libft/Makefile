@@ -32,15 +32,15 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_files))
 all: $(NAME)
 
 $(OBJ_DIR)/%.o:%.c
-	@echo "\x1b[0;32mCompilling:\x1B[0m \x1b[0;36m$<\x1B[0m"
-	gcc $(FLAGS) -c -o $@ $<
+	@gcc $(FLAGS) -c -o $@ $<
 
 $(NAME):
 	@mkdir -p $(OBJ_DIR)
 	@$(MAKE) $(OBJ)
 	@echo "\x1b[0;35mCreating libft.a\x1B[0m"
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "\x1b[0;32mlibft has compiled\x1B[0m"
 
 clean:
 	rm -rf $(OBJ_DIR)
@@ -50,4 +50,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
