@@ -16,6 +16,8 @@
 
 int main(void)
 {
-    printf("%i", STDIN_FILENO);
+	char *line;
+    printf("%i\n", STDIN_FILENO);
+    printf("%d\n", get_next_line(STDIN_FILENO, &line));
 	return(1);
 }

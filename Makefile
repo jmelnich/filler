@@ -34,7 +34,7 @@ $(NAME):
 	@mkdir -p $(OBJ_DIR)
 	@$(MAKE) $(OBJ)
 	@echo "\x1b[0;35mCreating my bot\x1B[0m"
-	@gcc $(FLAGS) $(OBJ) -I $(INC_DIR) -L $(LB_PF)/printflib.a -L $(LIBFT) -lft -o $(NAME)
+	@gcc $(FLAGS) $(OBJ) -I $(INC_DIR) $(LB_PF)/libftprintf.a -L $(LIBFT) -lft -o $(NAME)
 	@echo "\x1b[0;35mPutting bot to players\x1B[0m"
 	@cp $(NAME) players/
 
@@ -55,5 +55,5 @@ re: fclean all
 
 test:
 	@echo "\x1b[0;35mCreating check file\x1B[0m"
-	gcc -o check $(FLAGS) $(SRC_DIR)/$(SRC_files) -I $(INC_DIR)
+	gcc -o check $(FLAGS) $(SRC_DIR)/$(SRC_files) -I $(INC_DIR) $(LB_PF)/libftprintf.a -L $(LIBFT) -lft
 

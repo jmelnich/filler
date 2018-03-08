@@ -24,7 +24,8 @@ SRC_files = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 		ft_strtrim.c ft_strsplit.c ft_itoa.c ft_putchar.c ft_putstr.c \
 		ft_putendl.c ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
 		ft_putnbr_fd.c ft_strrev.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c \
-		ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_letters_length.c ft_wordcount.c
+		ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_letters_length.c ft_wordcount.c \
+		get_next_line.c
 
 OBJ_files = $(SRC_files:.c=.o)
 OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_files))
