@@ -5,10 +5,12 @@
 # include "../libs/ft_printf/printflib.h"
 # include <stdio.h> //del later
 
-typedef struct  s_chunk
+typedef struct  s_db
 {
     char    player;
     char    opponent;
-}               t_chunk;
+    int		mp_rows;
+    int		mp_cols;
+}               t_db;
 
 # endif

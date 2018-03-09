@@ -6,7 +6,7 @@
 #    By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/06 13:34:52 by imelnych          #+#    #+#              #
-#    Updated: 2018/03/08 16:42:10 by imelnych         ###   ########.fr        #
+#    Updated: 2018/03/09 16:41:21 by imelnych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo "\x1b[0;32mCompilling:\x1B[0m \x1b[0;36m$<\x1B[0m"
 	gcc $(FLAGS) -I  $(INC_DIR) -c $< -o $@
 
-$(NAME):
+$(NAME): $(OBJ)
 	@make -C $(LIBFT)
 	@make -C $(LB_PF)
 	@mkdir -p $(OBJ_DIR)
