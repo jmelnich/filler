@@ -11,6 +11,7 @@ typedef struct  s_db
     char    opponent;
     int		mp_rows;
     int		mp_cols;
+    char	**map;
 }               t_db;
 
 # endif
