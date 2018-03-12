@@ -25,14 +25,15 @@ static int	read_save_map(t_db *db)
 	while (i < db->mp_rows)
 	{
 		get_next_line(STDIN_FILENO, &line);
-        db->map[i++] = ft_strdup(line + 4);
+        ft_strcpy(db->map[i++], line + 4);
 		ft_strdel(&line);
 	}
-//	i = 0;
-//    while (db->map[i])
-//	{
-//		ft_printf("%s\n", db->map[i++]);
-//	}
+	i = 0;
+    while (db->map[i])
+	{
+		ft_printf("%s\n", db->map[i++]);
+	}
+    return (1);
 }
 
 static void borders_map(t_db *db)
