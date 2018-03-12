@@ -14,14 +14,36 @@
 // ◦ strerror
 #include "filler.h"
 
+static int	read_save_map(t_db *db)
+{
+	char	*line;
+	int		i;
+
+	i = 0;
+	get_next_line(STDIN_FILENO, &line);
+	ft_strdel(&line);
+	while (i < db->mp_rows)
+	{
+		get_next_line(STDIN_FILENO, &line);
+        db->map[i++] = ft_strdup(line + 4);
+		ft_strdel(&line);
+	}
+//	i = 0;
+//    while (db->map[i])
+//	{
+//		ft_printf("%s\n", db->map[i++]);
+//	}
+}
+
 static void borders_map(t_db *db)
 {
 	int i;
 
 	i = 0;
-	db->map = (char**)malloc(sizeof(char*) * (db->mp_rows + 1));
+	db->map = (char**)malloc(sizeof(char*) * (db->mp_rows + 1)); //free at the end
 	while(i < db->mp_rows)
 		db->map[i++] = ft_strnew(db->mp_cols);
+	db->map[i] = 0;
 }
 
 static int denote_map(char *line, t_db *db)
@@ -30,7 +52,7 @@ static int denote_map(char *line, t_db *db)
 
 	arr = ft_strsplit(line, ' ');
 	db->mp_rows = ft_atoi(arr[1]);
-	db->mp_cols = ft_atoi(arr[2]);
+	db->mp_cols = ft_atoi(arr[2]); //should i free them at the end?
 	ft_strdel(&line);
 	while(*arr)
 		ft_strdel(arr++);
@@ -46,6 +68,11 @@ static int denote_map(char *line, t_db *db)
 
 static int set_players(char *line, t_db *db)
 {
+	if (ft_strlen(line) < 10)
+	{
+		ft_printf("Error: Bad player name. Too short name.\n");
+		return (-1);
+	}
 	if (line[10] == '1')
 	{
 		db->player = 'O';
@@ -58,12 +85,11 @@ static int set_players(char *line, t_db *db)
 	}
 	else
 	{
-		ft_printf("Error: Bad player info\n");
+		ft_printf("Error: Bad player name\n");
 		return (-1);
 	}
 	ft_strdel(&line);
 	return (1);
-
 }
 
 int main(void)
@@ -74,13 +100,11 @@ int main(void)
 	ft_bzero(&db, sizeof(t_db));
     get_next_line(STDIN_FILENO, &line);
     if (set_players(line, &db) == -1)
-		return(1); //invalid player name
+		return(0); //invalid player name
 	get_next_line(STDIN_FILENO, &line);
 	if (denote_map(line, &db) == -1)
-		return(2); //invalid map
-	get_next_line(STDIN_FILENO, &line);
-	draw_map(line);//нарисвоать карту?
-
-	return (0);
+		return(0); //invalid map
+	read_save_map(&db);
+	return (1);
 }
 
