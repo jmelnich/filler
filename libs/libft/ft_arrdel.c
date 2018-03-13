@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdel.c                                        :+:      :+:    :+:   */
+/*   ft_arrdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/06 18:37:26 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/13 12:49:03 by imelnych         ###   ########.fr       */
+/*   Created: 2018/03/13 12:46:12 by imelnych          #+#    #+#             */
+/*   Updated: 2018/03/13 13:21:23 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-** Takes as a parameter the address of a string that need to be
-** freed with free(3), then sets its pointer to NULL.
-*/
-
-void	ft_strdel(char **as)
+void ft_arrdel(char ***arr)
 {
-	if (as)
-	{
-		free(*as);
-		*as = NULL;
-	}
+	while(**arr)
+		ft_strdel(*arr++);
+	free(arr);
+	arr = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 10:53:58 by imelnych          #+#    #+#             */
-/*   Updated: 2017/11/10 15:01:23 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/13 12:51:56 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void			ft_putstr_fd(char const *s, int fd);
 void			ft_putendl_fd(char const *s, int fd);
 void			ft_putnbr_fd(int nb, int fd);
 int				get_next_line(const int fd, char **line);
+void			ft_arrdel(char ***arr);
+
 
 typedef struct	s_list
 {
