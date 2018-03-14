@@ -29,5 +29,7 @@ int main(void)
     find_opponent_coord(&db);
 	denote_piece(line, &db);
     place_piece(&db);
+    //ft_printf("coord y == %d\n coord x == %d\n", db.push_y, db.push_x);
+	ft_printf("%d %d\n", db.push_y, db.push_x);
 	return (1);
 }

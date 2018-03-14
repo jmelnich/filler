@@ -14,6 +14,7 @@
 
 void ft_arrdel(char ***arr)
 {
-	while(*arr)
-		ft_strdel(arr++);
+	arr = 0;
+	// while(*arr)
+	// 	ft_strdel(arr++);
 }

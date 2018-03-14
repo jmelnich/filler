@@ -19,8 +19,25 @@ static int find_place(int y, int x, t_db *db)
 	int c;
 
 	place = 0;
-	//r = 0;
-
+	r = 0;
+	while (r < db->piece_rows)
+	{
+		c = 0;
+		while (c < db->piece_cols)
+		{
+			if ((db->map[y + r][x + c] == db->player || db->map[y + r][x + c] == db->player + 32) && (db->piece[r][c] == '*'))
+			{
+					place++;
+			}
+			if ((db->map[y + r][x + c] == db->opponent || db->map[y + r][x + c] == db->opponent + 32) && (db->piece[r][c] == '*'))
+				return (0);
+			c++;
+		}
+		r++;
+	}
+    if (place == 1)
+        return (1);
+    return  (0);
 
 }
 

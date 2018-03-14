@@ -7,18 +7,20 @@
 
 typedef struct  s_db
 {
-    char    player;
+    char    player; //X or O
     char    opponent;
     int		mp_rows;
     int		mp_cols;
     char	**map;
-    int     pl_coord_x;
-    int     pl_coord_y;
-    int     op_coord_x;
-    int     op_coord_y;
+    int     pl_coord_x; //don't need it
+    int     pl_coord_y; //don't need it
+    int     op_coord_x; //don't need it
+    int     op_coord_y; //don't need it
     int     piece_rows;
     int     piece_cols;
     char    **piece;
+    int     push_x;
+    int     push_y;
 }               t_db;
 
 int             set_players(char *line, t_db *db);
