@@ -31,7 +31,7 @@ static void space_alloc_piece(t_db *db)
     int i;
 
     i = 0;
-    db->piece = (char**)malloc(sizeof(char*) * (db->piece_rows + 1)); //free at the end
+    db->piece = (char**)malloc(sizeof(char*) * (db->piece_rows + 1)); //free at the end?
     while(i < db->piece_rows)
         db->piece[i++] = ft_strnew(db->piece_cols);
     db->piece[i] = 0;

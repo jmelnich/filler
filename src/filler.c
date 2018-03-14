@@ -6,7 +6,7 @@
 /*   By: imelnych <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 13:49:53 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/13 15:02:31 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/13 17:03:31 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int main(void)
 {
 	t_db db;
 	char *line;
-	int i;
 
     line = NULL;
 	ft_bzero(&db, sizeof(t_db));
@@ -29,8 +28,6 @@ int main(void)
 	find_player_coord(&db);
     find_opponent_coord(&db);
 	denote_piece(line, &db);
-	i = 0;
-	printf("PIECE ==== %s\n", db.piece[i]);
+    place_piece(&db);
 	return (1);
 }
-
