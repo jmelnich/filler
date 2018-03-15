@@ -1,5 +1,6 @@
-seed = 4314
-X: timedout
+seed = 7368
+X: error on input
+players/imelnych.filler: Segfault at 1
 players/carli.filler won
 Score:
-5AGAINST0
+4AGAINST1

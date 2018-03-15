@@ -6,19 +6,18 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 15:02:02 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/13 15:02:52 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/15 14:46:38 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static int	read_save_map(char *line, t_db *db)
+int	read_save_map(char *line, t_db *db)
 {
 	int	i;
 
 	i = 0;
-	if (!(get_next_line(STDIN_FILENO, &line)))
-        return (0);
+
 	ft_strdel(&line);
 	while (i < db->mp_rows)
 	{
@@ -40,8 +39,9 @@ static void space_alloc_map(t_db *db)
 	db->map[i] = 0;
 }
 
-int denote_map(char *line, t_db *db)
+int denote_map(t_db *db)
 {
+    char *line;
 	char **arr;
 
     get_next_line(STDIN_FILENO, &line);
@@ -56,7 +56,5 @@ int denote_map(char *line, t_db *db)
 		return (-1);
 	}
 	space_alloc_map(db);
-	if (!read_save_map(line, db))
-        return (0); //problem reading a map
     return (1);
 }

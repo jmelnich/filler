@@ -34,30 +34,10 @@ void find_player_coord(t_db *db)
     }
 }
 
-void find_opponent_coord(t_db *db)
+int set_players(t_db *db)
 {
-    int x;
-    int y;
+    char *line;
 
-    y = 0;
-    while (db->map[y])
-    {
-        x = 0;
-        while (db->map[y][x])
-        {
-            if (db->map[y][x] == db->opponent)
-            {
-                db->op_coord_x = x;
-                db->op_coord_y = y;
-            }
-            x++;
-        }
-        y++;
-    }
-}
-
-int set_players(char *line, t_db *db)
-{
     get_next_line(STDIN_FILENO, &line);
     if (ft_strlen(line) < 10)
     {

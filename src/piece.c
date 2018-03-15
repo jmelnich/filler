@@ -12,32 +12,6 @@
 
 #include "filler.h"
 
- static void	find_piece_start(t_db *db)
-{
-    int y;
-    int x;
-
-    y = 0;
-    db->piece_y = -1;
-    db->piece_x = -1;
-    while (y < db->piece_rows)
-    {
-        x = 0;
-        while (x < db->piece_cols)
-        {
-            if (db->piece[y][x] == '*')
-            {
-                if (db->piece_y == -1)
-                    db->piece_y = y;
-                if (db->piece_x == -1 || db->piece_x > x)
-                    db->piece_x = x;
-            }
-            x++;
-        }
-        y++;
-    }
-}
-
 static int read_save_piece(char *line, t_db *db)
 {
     int i;
@@ -48,7 +22,6 @@ static int read_save_piece(char *line, t_db *db)
         get_next_line(STDIN_FILENO, &line);
         ft_strcpy(db->piece[i++], line);
         ft_strdel(&line);
-        find_piece_start(db);
     }
     return (1);
 }
