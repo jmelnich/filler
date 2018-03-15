@@ -18,6 +18,8 @@ typedef struct  s_db
     int     op_coord_y; //don't need it
     int     piece_rows;
     int     piece_cols;
+    int     piece_x;
+    int     piece_y;
     char    **piece;
     int     push_x;
     int     push_y;

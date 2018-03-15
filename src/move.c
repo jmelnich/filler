@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:48:14 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/13 20:26:30 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/15 12:33:43 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ static int	move_up_right(t_db *db)
 			}
 			x--;
 		}
-        y++;
+       y++;
 	}
-    return (0);
+   return (0);
 }
 
 static int	move_down_left(t_db *db)
@@ -81,7 +81,7 @@ static int	move_down_left(t_db *db)
 		}
 		y--;
 	}
-    return (0);
+   return (0);
 }
 
 static int	move_down_right(t_db *db)
@@ -105,7 +105,7 @@ static int	move_down_right(t_db *db)
 		}
 		y--;
 	}
-    return (0);
+   return (0);
 }
 
 void	place_piece(t_db *db)

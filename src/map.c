@@ -49,7 +49,7 @@ int denote_map(char *line, t_db *db)
 	db->mp_rows = ft_atoi(arr[1]);
 	db->mp_cols = ft_atoi(arr[2]); //should i free them at the end?
 	ft_strdel(&line);
-    //ft_arrdel(&arr);
+    ft_arrdel(arr);
 	if (!(db->mp_rows) || !(db->mp_cols))
 	{
 		ft_printf("Error: Invalid map\n");

@@ -6,15 +6,14 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 12:46:12 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/14 11:14:26 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/15 09:24:36 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_arrdel(char ***arr)
+void ft_arrdel(char **arr)
 {
-	arr = 0;
-	// while(*arr)
-	// 	ft_strdel(arr++);
+	while (*arr)
+		ft_strdel(arr++);
 }

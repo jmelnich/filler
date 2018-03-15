@@ -31,5 +31,7 @@ int main(void)
     place_piece(&db);
     //ft_printf("coord y == %d\n coord x == %d\n", db.push_y, db.push_x);
 	ft_printf("%d %d\n", db.push_y, db.push_x);
-	return (1);
+    ft_arrdel(db.map);
+	ft_arrdel(db.piece);
+	return (0);
 }
