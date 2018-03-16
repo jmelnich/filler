@@ -12,6 +12,98 @@
 
 #include "filler.h"
 
+static void	trim_piece_rows(t_db *db)
+{
+	int y;
+	int x;
+
+	db->trim_rows_up = 0;
+	db->trim_rows_bottom = 0;
+	y = 0;
+	x = 0;
+	while (y < db->piece_rows - 1)
+	{
+		if (db->piece[y][x] == '.')
+		{
+			x++;
+		}
+		else if (!db->piece[y][x])
+		{
+			y++;
+			db->trim_rows_up++;
+			x = 0;
+		}
+		else
+		{
+			break ;
+		}
+	}
+	y = db->piece_rows - 1;
+	x = 0;
+	while (y)
+	{
+		if (db->piece[y][x] == '.')
+		{
+			x++;
+		}
+		else if (!db->piece[y][x])
+		{
+			y--;
+			db->trim_rows_bottom++;
+			x = 0;
+		}
+		else
+			break ;	
+	}
+}
+
+static void	trim_piece_cols(t_db *db)
+{
+	int y;
+	int x;
+
+	db->trim_cols_left = 0;
+	db->trim_cols_right = 0; 
+	y = 0;
+	x = 0;
+	printf("\ndebug 1 y[%d], piece_cols[%d]\n", y, db->piece_cols);
+	while (x < db->piece_cols - 1)
+	{
+		if (db->piece[y] && db->piece[y][x] == '.') {
+			printf("\n!!!\n");
+			y++;
+		}
+		//else if ((db->piece[y] == 0 && ) || !db->piece[y][x])
+		else if (y >= db->piece_rows)
+		{
+			printf("\ndebug 4 y[%d], x[%d], cols_left[%d]\n", y, x, db->trim_cols_left);
+
+			x++;
+			db->trim_cols_left++;
+			y = 0;
+		}
+		else
+			break ;
+	}
+	x = db->piece_cols - 1;
+	y = 0;
+	printf("\ndebug y[%d], piece_cols[%d]\n", y, db->piece_cols);
+	while (x)
+	{
+		if (db->piece[y][x] == '.')
+			y++;
+		else if (y >= db->piece_rows)
+		{
+			x--;
+			db->trim_cols_right++;
+			y = 0;
+		}
+		else
+			break ;
+	}
+}
+
+
 static int read_save_piece(char *line, t_db *db)
 {
     int i;
@@ -23,6 +115,10 @@ static int read_save_piece(char *line, t_db *db)
         ft_strcpy(db->piece[i++], line);
         ft_strdel(&line);
     }
+    trim_piece_rows(db);
+    //printf("\ntrim up = %d\n, trim bottom = %d\n, trim left = %d\n, trim right = %d\n", db->trim_rows_up, db->trim_rows_bottom, db->trim_cols_left, db->trim_cols_right);
+    trim_piece_cols(db);
+    printf("\ntrim up = %d\n, trim bottom = %d\n, trim left = %d\n, trim right = %d\n", db->trim_rows_up, db->trim_rows_bottom, db->trim_cols_left, db->trim_cols_right);
     return (1);
 }
 
@@ -45,8 +141,9 @@ int denote_piece(char *line, t_db *db)
     arr = ft_strsplit(line, ' ');
     db->piece_rows = ft_atoi(arr[1]);
     db->piece_cols = ft_atoi(arr[2]);
-    ft_arrdel(arr);
-    ft_strdel(&line);
+
+    //ft_arrdel(arr);
+    //ft_strdel(&line);
     space_alloc_piece(db);
     read_save_piece(line, db);
     return (1);

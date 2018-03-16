@@ -12,6 +12,20 @@
 
 #include "filler.h"
 
+void	detect_best_direction(t_db *db)
+{
+	if (db->pl_coord_y >= db->mp_rows / 2 && db->pl_coord_x >= db->mp_cols / 2)
+		db->direction = 1; //going up and left
+	else if (db->pl_coord_y >= db->mp_rows / 2 && db->pl_coord_x <= db->mp_cols / 2)
+		db->direction = 2; //going up and right
+	else if (db->pl_coord_y <= db->mp_rows / 2 && db->pl_coord_x >= db->mp_cols / 2)
+		db->direction = 3; //going down and left
+	else if (db->pl_coord_y <= db->mp_rows / 2 && db->pl_coord_x <= db->mp_cols / 2)
+		db->direction = 4; //going down and right
+	else
+		db->direction = 5; //doesn't matter
+}
+
 void find_player_coord(t_db *db)
 {
     int x;
@@ -32,6 +46,7 @@ void find_player_coord(t_db *db)
         }
         y++;
     }
+    detect_best_direction(db);
 }
 
 int set_players(t_db *db)

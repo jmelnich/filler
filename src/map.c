@@ -25,7 +25,7 @@ int	read_save_map(char *line, t_db *db)
         ft_strcpy(db->map[i++], line + 4);
 		ft_strdel(&line);
 	}
-    return (1);
+    return (0);
 }
 
 static void space_alloc_map(t_db *db)
@@ -48,8 +48,8 @@ int denote_map(t_db *db)
 	arr = ft_strsplit(line, ' ');
 	db->mp_rows = ft_atoi(arr[1]);
 	db->mp_cols = ft_atoi(arr[2]); //should i free them at the end?
-	ft_strdel(&line);
-    ft_arrdel(arr);
+	//ft_strdel(&line);
+    //ft_arrdel(arr);
 	if (!(db->mp_rows) || !(db->mp_cols))
 	{
 		printf("Error: Invalid map\n");

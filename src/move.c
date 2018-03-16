@@ -112,7 +112,7 @@ int	place_piece(t_db *db)
 {
 	int direction;
 
-	direction = detect_best_direction(db);
+	direction = db->direction;
 	//printf("\nWE GO %i\n", direction);
 	if (direction == 1 || direction == 5)
 	{
