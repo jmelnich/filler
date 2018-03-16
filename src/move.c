@@ -6,7 +6,13 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:48:14 by imelnych          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/03/16 11:23:10 by imelnych         ###   ########.fr       */
+||||||| merged common ancestors
+/*   Updated: 2018/03/15 12:33:43 by imelnych         ###   ########.fr       */
+=======
+/*   Updated: 2018/03/16 10:13:45 by imelnych         ###   ########.fr       */
+>>>>>>> f10ab121b58fcdc890e0b6e11a1a0c3868b52feb
 /*                                                                            */
 /* ************************************************************************** */
 
