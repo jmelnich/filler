@@ -17,16 +17,14 @@ LB_DIR = ./libs
 SRC_DIR = ./src
 INC_DIR = ./includes
 LIBFT =  $(LB_DIR)/libft
-LB_PF = $(LB_DIR)/ft_printf
 SRC_files = filler.c map.c players.c piece.c move.c place_piece_algo.c
 OBJ_files = $(SRC_files:.c=.o)
 OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_files))
 
 $(NAME): obj $(OBJ)
 	@make -C $(LIBFT)
-	@make -C $(LB_PF)
 	@echo "\x1b[0;35mCreating my bot\x1B[0m"
-	@gcc $(FLAGS) $(OBJ) -I $(INC_DIR) $(LB_PF)/libftprintf.a -L $(LIBFT) -lft -o $(NAME)
+	@gcc $(FLAGS) $(OBJ) -L $(LIBFT) -lft -I $(INC_DIR) -o $(NAME)
 	@echo "\x1b[0;35mPut bot to players\x1B[0m"
 	@cp $(NAME) players/
 
@@ -42,13 +40,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 clean:
 	@echo "\x1B[3;31mCleaning LIBFT objects\x1B[0m"
 	@make -C $(LIBFT) clean
-	@make -C $(LB_PF) clean
 	/bin/rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@echo "\x1B[3;31mCleaning LIBFT libft.a\x1B[0m"
 	@make -C $(LIBFT) fclean
-	@make -C $(LB_PF) fclean
 	/bin/rm -rf $(NAME)
 	/bin/rm -f players/$(NAME)
 

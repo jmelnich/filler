@@ -2,8 +2,8 @@
 # define FILLER_H
 
 # include "../libs/libft/libft.h"
-# include "../libs/ft_printf/printflib.h"
 # include <stdio.h> //del later
+//map.c players.c and filler.c -> change printf for ft_printf! add printf to filler.h
 
 typedef struct  s_db
 {

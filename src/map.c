@@ -52,7 +52,7 @@ int denote_map(t_db *db)
     ft_arrdel(arr);
 	if (!(db->mp_rows) || !(db->mp_cols))
 	{
-		ft_printf("Error: Invalid map\n");
+		printf("Error: Invalid map\n");
 		return (-1);
 	}
 	space_alloc_map(db);

@@ -41,7 +41,7 @@ int set_players(t_db *db)
     get_next_line(STDIN_FILENO, &line);
     if (ft_strlen(line) < 10)
     {
-        ft_printf("Error: Bad player name. Too short name.\n");
+        printf("Error: Bad player name. Too short name.\n");
         ft_strdel(&line);
         return (-1);
     }
@@ -57,7 +57,7 @@ int set_players(t_db *db)
     }
     else
     {
-        ft_printf("Error: Bad player name\n");
+        printf("Error: Bad player name\n");
         ft_strdel(&line);
         return (-1);
     }

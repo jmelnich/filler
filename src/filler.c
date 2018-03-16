@@ -43,9 +43,9 @@ int main(void)
 	 // 		printf("Piece == %s\n", db.piece[i++]);
 	 // 	}
 		if(place_piece(&db))
-			ft_printf("%d %d\n", db.push_y, db.push_x);
+			printf("%d %d\n", db.push_y, db.push_x);
 		else
-			ft_printf("0 0");
+			printf("0 0");
 		get_next_line(STDIN_FILENO, &line);
 		ft_strdel(&line);
 	 }
