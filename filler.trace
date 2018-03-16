@@ -1,6 +1,4 @@
-seed = 7368
-X: error on input
-players/imelnych.filler: Segfault at 1
-players/carli.filler won
+seed = 8325
+players/imelnych.filler won
 Score:
-4AGAINST1
+12AGAINST0

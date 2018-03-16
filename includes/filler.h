@@ -28,7 +28,7 @@ int             denote_map(t_db *db);
 int	            read_save_map(char *line, t_db *db);
 void            find_player_coord(t_db *db);
 int             denote_piece(char *line, t_db *db);
-void	        place_piece(t_db *db);
+int 	        place_piece(t_db *db);
 int	            detect_best_direction(t_db *db);
 int             check_piece_fit(int y, int x, t_db *db);
 

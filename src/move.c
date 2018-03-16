@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:48:14 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/15 12:33:43 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/16 11:23:10 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,18 +108,31 @@ static int	move_down_right(t_db *db)
    return (0);
 }
 
-void	place_piece(t_db *db)
+int	place_piece(t_db *db)
 {
 	int direction;
 
 	direction = detect_best_direction(db);
 	//printf("\nWE GO %i\n", direction);
 	if (direction == 1 || direction == 5)
+	{
 		move_up_left(db);
+		return (1);
+	}
 	if (direction == 2)
+	{
 		move_up_right(db);
+		return (1);
+	}
 	if (direction == 3)
+	{
 		move_down_left(db);
+		return (1);
+	}
 	if (direction == 4)
+	{
 		move_down_right(db);
+		return (1);
+	}
+	return (0);
 }
