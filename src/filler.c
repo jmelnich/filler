@@ -6,13 +6,7 @@
 /*   By: imelnych <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 13:49:53 by imelnych          #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2018/03/16 11:23:51 by imelnych         ###   ########.fr       */
-||||||| merged common ancestors
-/*   Updated: 2018/03/15 15:19:31 by imelnych         ###   ########.fr       */
-=======
-/*   Updated: 2018/03/16 10:10:03 by imelnych         ###   ########.fr       */
->>>>>>> f10ab121b58fcdc890e0b6e11a1a0c3868b52feb
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,27 +42,12 @@ int main(void)
 	 // 	{
 	 // 		printf("Piece == %s\n", db.piece[i++]);
 	 // 	}
-<<<<<<< HEAD
 		if(place_piece(&db))
 			ft_printf("%d %d\n", db.push_y, db.push_x);
 		else
 			ft_printf("0 0");
 		get_next_line(STDIN_FILENO, &line);
 		ft_strdel(&line);
-||||||| merged common ancestors
-	 // 	printf("out");
-		place_piece(&db);
-		ft_printf("%d %d\n", db.push_y, db.push_x);
-		get_next_line(STDIN_FILENO, &line);
-		ft_strdel(&line);
-		get_next_line(STDIN_FILENO, &line);
-		ft_strdel(&line);
-=======
-		place_piece(&db);
-		ft_printf("%d %d\n", db.push_y, db.push_x);
-		get_next_line(STDIN_FILENO, &line);
-		ft_strdel(&line);
->>>>>>> f10ab121b58fcdc890e0b6e11a1a0c3868b52feb
 	 }
  //    ft_arrdel(db.map);
 	// ft_arrdel(db.piece);
