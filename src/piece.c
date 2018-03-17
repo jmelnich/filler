@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 10:32:28 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/15 12:09:36 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/17 11:04:14 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ static void	trim_piece_rows(t_db *db)
 			x = 0;
 		}
 		else
-			break ;	
+			break ;
 	}
+
 }
 
 static void	trim_piece_cols(t_db *db)
@@ -63,21 +64,17 @@ static void	trim_piece_cols(t_db *db)
 	int x;
 
 	db->trim_cols_left = 0;
-	db->trim_cols_right = 0; 
+	db->trim_cols_right = 0;
 	y = 0;
 	x = 0;
-	printf("\ndebug 1 y[%d], piece_cols[%d]\n", y, db->piece_cols);
-	while (x < db->piece_cols - 1)
+	while (x < db->piece_cols - 1) // 0 < 2 // 0 < 1
 	{
-		if (db->piece[y] && db->piece[y][x] == '.') {
-			printf("\n!!!\n");
+		if (db->piece[y][x] == '.' && (y != db->piece_rows - 1))
+		{
 			y++;
 		}
-		//else if ((db->piece[y] == 0 && ) || !db->piece[y][x])
-		else if (y >= db->piece_rows)
+		else if (y == db->piece_rows - 1)
 		{
-			printf("\ndebug 4 y[%d], x[%d], cols_left[%d]\n", y, x, db->trim_cols_left);
-
 			x++;
 			db->trim_cols_left++;
 			y = 0;
@@ -87,12 +84,11 @@ static void	trim_piece_cols(t_db *db)
 	}
 	x = db->piece_cols - 1;
 	y = 0;
-	printf("\ndebug y[%d], piece_cols[%d]\n", y, db->piece_cols);
 	while (x)
 	{
-		if (db->piece[y][x] == '.')
+		if (db->piece[y][x] == '.' && (y != db->piece_rows - 1))
 			y++;
-		else if (y >= db->piece_rows)
+		else if (y == db->piece_rows - 1)
 		{
 			x--;
 			db->trim_cols_right++;
@@ -116,7 +112,6 @@ static int read_save_piece(char *line, t_db *db)
         ft_strdel(&line);
     }
     trim_piece_rows(db);
-    //printf("\ntrim up = %d\n, trim bottom = %d\n, trim left = %d\n, trim right = %d\n", db->trim_rows_up, db->trim_rows_bottom, db->trim_cols_left, db->trim_cols_right);
     trim_piece_cols(db);
     printf("\ntrim up = %d\n, trim bottom = %d\n, trim left = %d\n, trim right = %d\n", db->trim_rows_up, db->trim_rows_bottom, db->trim_cols_left, db->trim_cols_right);
     return (1);
