@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-static int	move_up_left(t_db *db)
+static int	move_from_up_left(t_db *db)
 {
 	int x;
 	int y;
@@ -25,8 +25,8 @@ static int	move_up_left(t_db *db)
 		{
 			if (check_piece_fit(y, x, db))
 			{
-				db->push_x = x;
-				db->push_y = y;
+				db->push_x = x - db->trim_cols_left;
+				db->push_y = y - db->trim_rows_up;
 				return (1); // we can place piece, return success
 			}
 			x++;
@@ -36,7 +36,7 @@ static int	move_up_left(t_db *db)
 	return (0);
 }
 
-static int	move_up_right(t_db *db)
+static int	move_from_up_right(t_db *db)
 {
 	int x;
 	int y;
@@ -49,8 +49,8 @@ static int	move_up_right(t_db *db)
 		{
 			if (check_piece_fit(y, x, db))
 			{
-				db->push_x = x;
-				db->push_y = y;
+				db->push_x = x - db->trim_cols_left;
+				db->push_y = y - db->trim_rows_up;
 				return (1);
 			}
 			x--;
@@ -60,7 +60,7 @@ static int	move_up_right(t_db *db)
    return (0);
 }
 
-static int	move_down_left(t_db *db)
+static int	move_from_down_left(t_db *db)
 {
 	int x;
 	int y;
@@ -73,8 +73,8 @@ static int	move_down_left(t_db *db)
 		{
 			if (check_piece_fit(y, x, db))
 			{
-				db->push_x = x;
-				db->push_y = y;
+				db->push_x = x - db->trim_cols_left;
+				db->push_y = y - db->trim_rows_up;
 				return (1);
 			}
 			x++;
@@ -84,7 +84,7 @@ static int	move_down_left(t_db *db)
    return (0);
 }
 
-static int	move_down_right(t_db *db)
+static int	move_from_down_right(t_db *db)
 {
 	int x;
 	int y;
@@ -97,8 +97,8 @@ static int	move_down_right(t_db *db)
 		{
 			if (check_piece_fit(y, x, db))
 			{
-				db->push_x = x;
-				db->push_y = y;
+				db->push_x = x - db->trim_cols_left;
+				db->push_y = y - db->trim_rows_up;
 				return (1);
 			}
 			x--;
@@ -116,22 +116,22 @@ int	place_piece(t_db *db)
 	//printf("\nWE GO %i\n", direction);
 	if (direction == 1 || direction == 5)
 	{
-		move_up_left(db);
+		move_from_up_left(db);
 		return (1);
 	}
 	if (direction == 2)
 	{
-		move_up_right(db);
+		move_from_up_right(db);
 		return (1);
 	}
 	if (direction == 3)
 	{
-		move_down_left(db);
+		move_from_down_left(db);
 		return (1);
 	}
 	if (direction == 4)
 	{
-		move_down_right(db);
+		move_from_down_right(db);
 		return (1);
 	}
 	return (0);

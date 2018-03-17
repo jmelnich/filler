@@ -1,6 +1,4 @@
-seed = 6344
-O: timedout
-players/imelnych.filler: Segfault at 0
-players/carli.filler won
+seed = 3238
+players/imelnych.filler won
 Score:
-0AGAINST15
+1034AGAINST953

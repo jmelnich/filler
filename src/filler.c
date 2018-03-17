@@ -36,8 +36,13 @@ int main(void)
 	 		i = 1;
 	 	}
 		denote_piece(line, &db);
-		if(place_piece(&db))
-			printf("%d %d\n", db.push_y, db.push_x);
+		if(place_piece(&db)) {
+			ft_putnbr(db.push_y);
+			write(1, " ", 1);
+			ft_putnbr(db.push_x);
+			write(1, "\n", 1);
+			//printf("%d %d\n", db.push_y, db.push_x);
+		}
 		else
 			printf("0 0");
 		get_next_line(STDIN_FILENO, &line);

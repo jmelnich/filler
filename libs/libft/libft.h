@@ -79,6 +79,15 @@ void			ft_putnbr_fd(int nb, int fd);
 int				get_next_line(const int fd, char **line);
 void			ft_arrdel(char **arr);
 
+typedef struct	s_gnl_struct
+{
+	char				*content;
+	char				*posle;
+	int					fd;
+	int					pos;
+	char				**ret;
+	struct s_gnl_struct	*next;
+}				t_gnl_struct;
 
 typedef struct	s_list
 {

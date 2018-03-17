@@ -73,7 +73,7 @@ static void	trim_piece_cols(t_db *db)
 		{
 			y++;
 		}
-		else if (y == db->piece_rows - 1)
+		else if (db->piece[y][x] == '.' && (y == db->piece_rows - 1))
 		{
 			x++;
 			db->trim_cols_left++;
@@ -88,7 +88,7 @@ static void	trim_piece_cols(t_db *db)
 	{
 		if (db->piece[y][x] == '.' && (y != db->piece_rows - 1))
 			y++;
-		else if (y == db->piece_rows - 1)
+		else if (db->piece[y][x] == '.' && (y == db->piece_rows - 1))
 		{
 			x--;
 			db->trim_cols_right++;
@@ -113,7 +113,7 @@ static int read_save_piece(char *line, t_db *db)
     }
     trim_piece_rows(db);
     trim_piece_cols(db);
-    printf("\ntrim up = %d\n, trim bottom = %d\n, trim left = %d\n, trim right = %d\n", db->trim_rows_up, db->trim_rows_bottom, db->trim_cols_left, db->trim_cols_right);
+    //printf("\ntrim up = %d\n, trim bottom = %d\n, trim left = %d\n, trim right = %d\n", db->trim_rows_up, db->trim_rows_bottom, db->trim_cols_left, db->trim_cols_right);
     return (1);
 }
 
