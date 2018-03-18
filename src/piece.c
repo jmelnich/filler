@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coords.c                                           :+:      :+:    :+:   */
+/*   piece.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 10:32:28 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/17 11:04:14 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/18 16:47:58 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,33 +113,29 @@ static int read_save_piece(char *line, t_db *db)
     }
     trim_piece_rows(db);
     trim_piece_cols(db);
-    //printf("\ntrim up = %d\n, trim bottom = %d\n, trim left = %d\n, trim right = %d\n", db->trim_rows_up, db->trim_rows_bottom, db->trim_cols_left, db->trim_cols_right);
     return (1);
-}
-
-static void space_alloc_piece(t_db *db)
-{
-    int i;
-
-    i = 0;
-    db->piece = (char**)malloc(sizeof(char*) * (db->piece_rows + 1)); //free at the end?
-    while(i < db->piece_rows)
-        db->piece[i++] = ft_strnew(db->piece_cols);
-    db->piece[i] = 0;
 }
 
 int denote_piece(char *line, t_db *db)
 {
     char **arr;
-    if (!(get_next_line(STDIN_FILENO, &line)))
-        return (0);
+    get_next_line(STDIN_FILENO, &line);
     arr = ft_strsplit(line, ' ');
+    //if (*arr) //сделать функцию которая будет считать длину массива, запротектить что если мой арр меньше 3 тогда еррор инвалид тоукен
     db->piece_rows = ft_atoi(arr[1]);
     db->piece_cols = ft_atoi(arr[2]);
-
-    //ft_arrdel(arr);
-    //ft_strdel(&line);
-    space_alloc_piece(db);
+    if (!(db->piece_rows) || !(db->piece_cols))
+	{
+		ft_putstr("Error: Invalid token\n");
+		ft_strdel(&line);
+		ft_arrdel(arr);
+		return (-1);
+	}
+    ft_strdel(&line);
+    ft_arrdel(arr);
+    if (db->piece)
+    	ft_arrdel(db->piece);
+    db->piece = ft_arrnew(db->piece_rows, db->piece_cols);
     read_save_piece(line, db);
     return (1);
 }

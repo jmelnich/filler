@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 10:53:58 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/15 09:19:50 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/18 14:37:39 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void			ft_putstr_fd(char const *s, int fd);
 void			ft_putendl_fd(char const *s, int fd);
 void			ft_putnbr_fd(int nb, int fd);
 int				get_next_line(const int fd, char **line);
+char	**ft_arrnew(size_t y, size_t x);
 void			ft_arrdel(char **arr);
 
 typedef struct	s_gnl_struct
@@ -86,7 +87,7 @@ typedef struct	s_gnl_struct
 	int					fd;
 	int					pos;
 	char				**ret;
-	struct s_gnl_struct	*next;
+	struct		s_gnl_struct	*next;
 }				t_gnl_struct;
 
 typedef struct	s_list

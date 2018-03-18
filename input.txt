@@ -1,0 +1,46 @@
+$$$ exec p1 : [players/imelnych.filler]
+Plateau 4 8:
+    01234567
+000 ........
+001 ..O.....
+002 .....X..
+003 ........
+Piece 1 3:
+***
+Plateau 4 8:
+    01234567
+000 ........
+001 ..OOO...
+002 .....x..
+003 .....x..
+Piece 2 4:
+.*..
+**..
+Plateau 4 8:
+    01234567
+000 ........
+001 ..OOO...
+002 ...OOX..
+003 .....xx.
+Piece 1 2:
+**
+Plateau 4 8:
+    01234567
+000 ........
+001 ..OOO...
+002 .ooOOX..
+003 .....XX.
+Piece 1 4:
+**..
+
+133 134 112 55
+
+LEAK SUMMARY:
+==61525==    definitely lost: 241 bytes in 13 blocks
+==61525==    indirectly lost: 17 bytes in 4 blocks
+==61525==      possibly lost: 2,064 bytes in 1 blocks
+
+
+ definitely lost: 241 bytes in 13 blocks
+==62290==    indirectly lost: 0 bytes in 0 blocks
+==62290==      possibly lost: 2,064 bytes in 1 blocks
