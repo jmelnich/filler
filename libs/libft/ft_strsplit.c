@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 10:22:48 by imelnych          #+#    #+#             */
-/*   Updated: 2017/11/10 17:54:32 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/19 18:47:10 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	**ft_strsplit(char const *s, char c)
 	i = 0;
 	if (!s)
 		return (NULL);
-	if (!(array = (char**)malloc(sizeof(*array) * ft_wordcount(s, c) + 1)))
+	if (!(array = (char**)malloc(sizeof(char*) * ft_wordcount(s, c) + 1)))
 		return (NULL);
 	j = 0;
 	while (i < ft_wordcount(s, c))

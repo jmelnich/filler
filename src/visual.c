@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   visual.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/21 15:21:34 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/19 18:49:15 by imelnych         ###   ########.fr       */
+/*   Created: 2018/03/19 18:52:25 by imelnych          #+#    #+#             */
+/*   Updated: 2018/03/19 19:27:14 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** Allocates (with malloc(3)) and returns a “fresh” string ending
-** with ’\0’. Each character of the string is initialized at
-** ’\0’. If the allocation fails the function returns NULL.
-*/
+#include "../includes/filler.h"
 
-#include "libft.h"
-
-char	*ft_strnew(size_t size)
+int visual(void)
 {
-	char *str;
+	char *line;
 
-	str = (char*)malloc(sizeof(char) * size + 1);
-	if (!str)
-		return (NULL);
-	ft_bzero(str, size + 1);
-	return (str);
+	line = NULL;
+	get_next_line(STDIN_FILENO, &line);
+	printf("%s\n", line);
+	return (1);
+}
+
+int	main(void)
+{
+	visual();
+	return (0);
 }

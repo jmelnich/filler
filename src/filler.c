@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 13:49:53 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/19 14:11:54 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/19 19:11:52 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,16 @@ int	main(void)
 		else
 			printf("0 0");
 		get_next_line(STDIN_FILENO, &line);
-		printf("\nLINE 2 = %s\n", line);
 		if (!ft_strcmp(line, "exit")) //del it later
 		{
 			ft_strdel(&line);
 			ft_arrdel(db.map);
 			ft_arrdel(db.piece);
 			system("var=$(ps | grep ./imelnych.filler | grep -v grep | cut -d' ' -f1); leaks $var");
-			return (1);
+			exit(0);
 		}
-	 	if (line)
+	 	if (ft_strlen(line))
 	 		ft_strdel(&line);
-		//ft_strdel(&line);
 	 }
 	ft_arrdel(db.map);
 	ft_arrdel(db.piece);
