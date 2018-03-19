@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 15:02:02 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/18 14:54:18 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/19 14:28:35 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,28 @@ int denote_map(t_db *db)
 
 	get_next_line(STDIN_FILENO, &line);
 	arr = ft_strsplit(line, ' ');
-	db->mp_rows = ft_atoi(arr[1]);
-	db->mp_cols = ft_atoi(arr[2]);
-	if (!(db->mp_rows) || !(db->mp_cols))
+	ft_strdel(&line);
+	if (arr[1] && arr[2])
 	{
-		ft_putstr("Error: Invalid map\n");
-		ft_strdel(&line);
+		db->mp_rows = ft_atoi(arr[1]);
+		db->mp_cols = ft_atoi(arr[2]);
+	}
+	else
+	{
+		ft_putstr("Error: Invalid map coordinates\n");
 		ft_arrdel(arr);
+		free(arr);
 		return (-1);
 	}
-	ft_strdel(&line);
+	if (!(db->mp_rows) || !(db->mp_cols))
+	{
+		ft_putstr("Error: Map coordinates can't be null\n");
+		ft_arrdel(arr);
+		free(arr);
+		return (-1);
+	}
 	ft_arrdel(arr);
+	free(arr);
 	db->map = ft_arrnew(db->mp_rows, db->mp_cols);
 	return (1);
 }

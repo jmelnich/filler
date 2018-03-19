@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 10:32:28 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/18 16:47:58 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/19 14:30:55 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,42 +100,61 @@ static void	trim_piece_cols(t_db *db)
 }
 
 
-static int read_save_piece(char *line, t_db *db)
+static int read_save_piece(t_db *db)
 {
-    int i;
+	char *line;
+	int i;
 
-    i = 0;
-    while (i < db->piece_rows)
-    {
-        get_next_line(STDIN_FILENO, &line);
-        ft_strcpy(db->piece[i++], line);
-        ft_strdel(&line);
-    }
-    trim_piece_rows(db);
-    trim_piece_cols(db);
-    return (1);
+	i = 0;
+	while (i < db->piece_rows)
+	{
+		get_next_line(STDIN_FILENO, &line);
+		ft_strcpy(db->piece[i++], line);
+		ft_strdel(&line);
+	}
+	trim_piece_rows(db);
+	trim_piece_cols(db);
+	return (1);
 }
 
 int denote_piece(char *line, t_db *db)
 {
-    char **arr;
-    get_next_line(STDIN_FILENO, &line);
-    arr = ft_strsplit(line, ' ');
-    //if (*arr) //сделать функцию которая будет считать длину массива, запротектить что если мой арр меньше 3 тогда еррор инвалид тоукен
-    db->piece_rows = ft_atoi(arr[1]);
-    db->piece_cols = ft_atoi(arr[2]);
-    if (!(db->piece_rows) || !(db->piece_cols))
+	char **arr;
+
+	if (db->piece){
+		ft_arrdel(db->piece);
+		free(db->piece);
+	}
+	get_next_line(STDIN_FILENO, &line);
+	arr = ft_strsplit(line, ' ');
+	ft_strdel(&line);
+	if (arr[1] && arr[2])
 	{
-		ft_putstr("Error: Invalid token\n");
-		ft_strdel(&line);
-		ft_arrdel(arr);
+		db->piece_rows = ft_atoi(arr[1]);
+		db->piece_cols = ft_atoi(arr[2]);
+	}
+	else
+	{
+		if (arr){
+			ft_arrdel(arr);
+			free(arr);
+		}
+		ft_putstr("Error: Invalid token coordinates\n");
 		return (-1);
 	}
-    ft_strdel(&line);
-    ft_arrdel(arr);
-    if (db->piece)
-    	ft_arrdel(db->piece);
-    db->piece = ft_arrnew(db->piece_rows, db->piece_cols);
-    read_save_piece(line, db);
-    return (1);
+	if (!(db->piece_rows) || !(db->piece_cols))
+	{
+		if (arr){
+			ft_arrdel(arr);
+			free(arr);
+		}
+		ft_putstr("Error: Token coordinates can't be null\n");
+		return (-1);
+	}
+
+	ft_arrdel(arr);
+	free(arr);
+	db->piece = ft_arrnew(db->piece_rows, db->piece_cols);
+	read_save_piece(db);
+	return (1);
 }

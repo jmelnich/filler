@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 12:46:12 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/15 09:24:36 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/19 14:28:15 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,5 @@ void ft_arrdel(char **arr)
 {
 	while (*arr)
 		ft_strdel(arr++);
+	//free(*arr);
 }
