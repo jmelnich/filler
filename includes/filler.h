@@ -26,6 +26,14 @@ typedef struct  s_db
     int     push_y;
 }               t_db;
 
+typedef struct s_visual
+{
+    char        *player1;
+    char        *player2;
+    int         mp_rows;
+    int         pc_rows;
+}               t_visual;
+
 int             set_players(t_db *db);
 int             denote_map(t_db *db);
 int	            read_save_map(char *line, t_db *db);

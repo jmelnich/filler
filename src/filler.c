@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 13:49:53 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/19 19:11:52 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/20 11:04:31 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ int	main(void)
 			system("var=$(ps | grep ./imelnych.filler | grep -v grep | cut -d' ' -f1); leaks $var");
 			exit(0);
 		}
-	 	if (ft_strlen(line))
-	 		ft_strdel(&line);
+	 	// if (ft_strlen(line))
+	 	// 	ft_strdel(&line);
 	 }
 	ft_arrdel(db.map);
 	ft_arrdel(db.piece);

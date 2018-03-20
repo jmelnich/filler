@@ -6,7 +6,7 @@
 #    By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/06 13:34:52 by imelnych          #+#    #+#              #
-#    Updated: 2018/03/14 11:30:08 by imelnych         ###   ########.fr        #
+#    Updated: 2018/03/20 13:19:48 by imelnych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,32 +21,54 @@ SRC_files = filler.c map.c players.c piece.c move.c place_piece_algo.c
 OBJ_files = $(SRC_files:.c=.o)
 OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_files))
 
-$(NAME): obj $(OBJ)
+VISUAL = visual
+OBJ_DIR_VISUAL = ./obj_visual
+SRC_files_visual = visual.c
+OBJ_files_visual = $(SRC_files_visual:.c=.o)
+OBJ_VISUAL = $(addprefix $(OBJ_DIR_VISUAL)/, $(OBJ_files_visual))
+
+
+$(NAME): obj $(OBJ) $(VISUAL)
 	@make -C $(LIBFT)
 	@echo "\x1b[0;35mCreating my bot\x1B[0m"
 	@gcc $(FLAGS) $(OBJ) -L $(LIBFT) -lft -I $(INC_DIR) -o $(NAME)
 	@echo "\x1b[0;35mPut bot to players\x1B[0m"
 	@cp $(NAME) players/
 
-all: $(NAME)
+$(VISUAL): obj_visual $(OBJ_VISUAL)
+	@echo "\x1b[0;35mCreating visualization\x1B[0m"
+	@gcc $(FLAGS) $(OBJ_VISUAL) -L $(LIBFT) -lft -I $(INC_DIR) -o $(VISUAL)
+
+all: $(NAME) $(VISUAL)
 
 obj:
 	@mkdir -p $(OBJ_DIR)
+
+obj_visual:
+	@mkdir -p $(OBJ_DIR_VISUAL)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo "\x1b[0;32mCompilled:\x1B[0m \x1b[0;36m$<\x1B[0m"
 	gcc $(FLAGS) -I  $(INC_DIR) -o $@ -c $<
 
+$(OBJ_DIR_VISUAL)/%.o: $(SRC_DIR)/%.c
+	@echo "\x1b[0;32mCompilled:\x1B[0m \x1b[0;36m$<\x1B[0m"
+	gcc $(FLAGS) -I  $(INC_DIR) -o $@ -c $<
+
 clean:
-	@echo "\x1B[3;31mCleaning LIBFT objects\x1B[0m"
 	@make -C $(LIBFT) clean
+	@echo "\x1B[3;31mCleaning Filler objects\x1B[0m"
 	/bin/rm -rf $(OBJ_DIR)
+	@echo "\x1B[3;31mCleaning Visual objects\x1B[0m"
+	/bin/rm -rf $(OBJ_DIR_VISUAL)
 
 fclean: clean
-	@echo "\x1B[3;31mCleaning LIBFT libft.a\x1B[0m"
 	@make -C $(LIBFT) fclean
+	@echo "\x1B[3;31mDeleting my player\x1B[0m"
 	/bin/rm -rf $(NAME)
 	/bin/rm -f players/$(NAME)
+	@echo "\x1B[3;31mDeleting visualization\x1B[0m"
+	/bin/rm -f $(VISUAL)
 
 re: fclean all
 
