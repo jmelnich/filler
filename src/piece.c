@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 10:32:28 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/19 19:08:44 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/20 20:35:21 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,8 @@ int denote_piece(char *line, t_db *db)
 {
 	char **arr;
 
-	if (db->piece){
-		ft_arrdel(db->piece);
-		free(db->piece);
-	}
+	if (db->piece)
+		ft_arrdel(&db->piece);
 	get_next_line(STDIN_FILENO, &line);
 	arr = ft_strsplit(line, ' ');
 	ft_strdel(&line);
@@ -135,25 +133,20 @@ int denote_piece(char *line, t_db *db)
 	}
 	else
 	{
-		if (arr){
-			ft_arrdel(arr);
-			free(arr);
-		}
+		if (arr)
+			ft_arrdel(&arr);
 		ft_putstr("Error: Invalid token coordinates\n");
 		return (-1);
 	}
 	if (!(db->piece_rows) || !(db->piece_cols))
 	{
-		if (arr){
-			ft_arrdel(arr);
-			free(arr);
-		}
+		if (arr)
+			ft_arrdel(&arr);
 		ft_putstr("Error: Token coordinates can't be null\n");
 		return (-1);
 	}
 
-	ft_arrdel(arr);
-	free(arr);
+	ft_arrdel(&arr);
 	db->piece = ft_arrnew(db->piece_rows, db->piece_cols);
 	read_save_piece(db);
 	return (1);

@@ -9,4 +9,6 @@ inputs/outputs.
 $> make
 
 # Usage
-./filler_vm -p1 players/PLAYER_NAME.filler -p2 players/PLAYER_NAME.filler -v -f maps/map00
+./filler_vm -p1 players/imelnych.filler -p2 players/PLAYER_NAME.filler -v -f maps/map00
+or visualize with
+./filler_vm -p1 players/imelnych.filler -p2 players/PLAYER_NAME.filler -v -f maps/map00 | ./visual

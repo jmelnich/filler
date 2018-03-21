@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 18:52:25 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/20 17:23:39 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/20 20:52:24 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 static void visualize(t_visual *vs, char *line)
 {
 	int	y;
-	int x;
+	int	x;
 
 	system("clear");
 
-	y = 0;
-	write(1, "💧", 4);
-	printf(" : player O == %s\n", vs->player1);
-	write(1, "🔥", 4);
-	printf(" : player X == %s\n", vs->player2);
-
-	printf("%s\n", line);
+	// write(1, "💧", 4);
+	// printf(" : player O == %s\n", vs->player1);
+	// write(1, "🔥", 4);
+	// printf(" : player X == %s\n", vs->player2);
+	// printf("%s\n", line);
+	printf("💧 : player 0 == %s\n🔥 : player X == %s\n%s\n", vs->player1, vs->player2, line);
 	ft_strdel(&line);
+	y = 0;
 	while (y < vs->mp_rows)
 	{
 		get_next_line(STDIN_FILENO, &line);
@@ -41,40 +41,38 @@ static void visualize(t_visual *vs, char *line)
 				write(1, &line[x], 1);
 			x++;
 		}
-	write(1, "\n", 1);
-	ft_strdel(&line);
-	y++;
+		write(1, "\n", 1);
+		ft_strdel(&line);
+		y++;
 	}
 }
 
 static void denote_piece_heigth(t_visual *vs, char *line)
 {
-	char **arr;
+	char	**arr;
 
 	arr = ft_strsplit(line, ' ');
 	ft_strdel(&line);
 	if (arr[1] && arr[2])
 		vs->pc_rows = ft_atoi(arr[1]);
-	ft_arrdel(arr);
-	free(arr);
+	ft_arrdel(&arr);
 }
 
 static void denote_map_heigth(t_visual *vs, char *line)
 {
-	char **arr;
+	char	**arr;
 
 	get_next_line(STDIN_FILENO, &line);
 	arr = ft_strsplit(line, ' ');
 	ft_strdel(&line);
 	if (arr[1] && arr[2])
 		vs->mp_rows = ft_atoi(arr[1]);
-	ft_arrdel(arr);
-	free(arr);
+	ft_arrdel(&arr);
 }
 
 static void skip_line(char *line, int times)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < times)
@@ -102,6 +100,34 @@ static void read_players(t_visual *vs, char *line)
 	vs->player2[lst - 1] = 0;
 }
 
+int check_line(t_visual *vs, char *line)
+{
+	if (line[0] == ' ')
+	{
+		visualize(vs, line);
+		get_next_line(STDIN_FILENO, &line);
+	}
+	if (line[1] == 'i')
+	{
+		denote_piece_heigth(vs, line);
+		skip_line(line, vs->pc_rows);
+	}
+	if (line[1] == 'g')
+		get_next_line(STDIN_FILENO, &line);
+	if (line[0] == '=')
+	{
+		if (!line)
+			write (1, "AA\n", 3);
+		printf("💧 :%s\n", line);
+		ft_strdel(&line);
+		get_next_line(STDIN_FILENO, &line);
+		printf("🔥 :%s\n", line);
+		ft_strdel(&line);
+		return (0);
+	}
+	return (1);
+}
+
 int	main(void)
 {
 	t_visual vs;
@@ -115,30 +141,29 @@ int	main(void)
 	//i = 0;
 	while (get_next_line(STDIN_FILENO, &line) > 0)
 	{
-		if (line[0] == ' ')
-		{
-			visualize(&vs, line);
-			get_next_line(STDIN_FILENO, &line);
-		}
-		if (line[1] == 'i')
-		{
-			denote_piece_heigth(&vs, line);
-			skip_line(line, vs.pc_rows);
-		}
-		if (line[1] == 'g')
-		{
-			get_next_line(STDIN_FILENO, &line);
-		}
-		if (line[0] == '=')
-		{
-			write(1, "💧", 4);
-			printf(" :%s\n", line);
-			ft_strdel(&line);
-			get_next_line(STDIN_FILENO, &line);
-			write(1, "🔥", 4);
-			printf(" :%s\n", line);
+		if (!check_line(&vs, line))
 			break ;
-		}
+		// if (line[0] == ' ')
+		// {
+		// 	visualize(&vs, line);
+		// 	get_next_line(STDIN_FILENO, &line);
+		// }
+		// if (line[1] == 'i')
+		// {
+		// 	denote_piece_heigth(&vs, line);
+		// 	skip_line(line, vs.pc_rows);
+		// }
+		// if (line[1] == 'g')
+		// 	get_next_line(STDIN_FILENO, &line);
+		// if (line[0] == '=')
+		// {
+		// 	printf("💧 :%s\n", line);
+		// 	ft_strdel(&line);
+		// 	get_next_line(STDIN_FILENO, &line);
+		// 	printf("🔥 :%s\n", line);
+		// 	ft_strdel(&line);
+		// 	break ;
+		// }
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/06 13:34:52 by imelnych          #+#    #+#              #
-#    Updated: 2018/03/20 13:19:48 by imelnych         ###   ########.fr        #
+#    Updated: 2018/03/20 20:10:16 by imelnych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,8 @@ OBJ_files_visual = $(SRC_files_visual:.c=.o)
 OBJ_VISUAL = $(addprefix $(OBJ_DIR_VISUAL)/, $(OBJ_files_visual))
 
 
-$(NAME): obj $(OBJ) $(VISUAL)
-	@make -C $(LIBFT)
+
+$(NAME): obj libftbuild $(OBJ) $(VISUAL)
 	@echo "\x1b[0;35mCreating my bot\x1B[0m"
 	@gcc $(FLAGS) $(OBJ) -L $(LIBFT) -lft -I $(INC_DIR) -o $(NAME)
 	@echo "\x1b[0;35mPut bot to players\x1B[0m"
@@ -43,6 +43,9 @@ all: $(NAME) $(VISUAL)
 
 obj:
 	@mkdir -p $(OBJ_DIR)
+
+libftbuild:
+	@make -C $(LIBFT)
 
 obj_visual:
 	@mkdir -p $(OBJ_DIR_VISUAL)

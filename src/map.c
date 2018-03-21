@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 15:02:02 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/19 14:28:35 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/20 20:34:08 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 void	detect_best_direction(t_db *db)
 {
-	if (db->pl_coord_y >= db->mp_rows / 2 && db->pl_coord_x >= db->mp_cols / 2)
+	if (db->pl_coord_y >= db->mp_rows / 2 &&
+		db->pl_coord_x >= db->mp_cols / 2)
 		db->direction = 1; //going up and left
-	else if (db->pl_coord_y >= db->mp_rows / 2 && db->pl_coord_x <= db->mp_cols / 2)
+	else if (db->pl_coord_y >= db->mp_rows / 2 &&
+		db->pl_coord_x <= db->mp_cols / 2)
 		db->direction = 2; //going up and right
-	else if (db->pl_coord_y <= db->mp_rows / 2 && db->pl_coord_x >= db->mp_cols / 2)
+	else if (db->pl_coord_y <= db->mp_rows / 2 &&
+		db->pl_coord_x >= db->mp_cols / 2)
 		db->direction = 3; //going down and left
-	else if (db->pl_coord_y <= db->mp_rows / 2 && db->pl_coord_x <= db->mp_cols / 2)
+	else if (db->pl_coord_y <= db->mp_rows / 2 &&
+		db->pl_coord_x <= db->mp_cols / 2)
 		db->direction = 4; //going down and right
 	else
 		db->direction = 5; //doesn't matter
@@ -81,19 +85,16 @@ int denote_map(t_db *db)
 	else
 	{
 		ft_putstr("Error: Invalid map coordinates\n");
-		ft_arrdel(arr);
-		free(arr);
+		ft_arrdel(&arr);
 		return (-1);
 	}
 	if (!(db->mp_rows) || !(db->mp_cols))
 	{
 		ft_putstr("Error: Map coordinates can't be null\n");
-		ft_arrdel(arr);
-		free(arr);
+		ft_arrdel(&arr);
 		return (-1);
 	}
-	ft_arrdel(arr);
-	free(arr);
+	ft_arrdel(&arr);
 	db->map = ft_arrnew(db->mp_rows, db->mp_cols);
 	return (1);
 }
