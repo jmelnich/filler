@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 12:12:59 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/21 12:19:01 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/21 14:17:04 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct	s_db
 	char	opponent;
 	int		pl_coord_x;
 	int		pl_coord_y;
+	int		found_pl;
 	int		direction;
 	int		mp_rows;
 	int		mp_cols;
@@ -28,10 +29,10 @@ typedef struct	s_db
 	int		piece_rows;
 	int		piece_cols;
 	char	**piece;
-	int		trim_rows_up;
-	int		trim_rows_bottom;
-	int		trim_cols_left;
-	int		trim_cols_right;
+	int		trup;
+	int		trbm;
+	int		tcl;
+	int		tcr;
 	int		push_x;
 	int		push_y;
 }				t_db;
@@ -44,12 +45,13 @@ typedef struct	s_visual
 	int		pc_rows;
 }				t_visual;
 
-int				set_players(t_db *db);
-int				denote_map(t_db *db);
+int				set_players(char *line, t_db *db);
+int				denote_map(char *line, t_db *db);
 int				read_save_map(char *line, t_db *db);
 void			find_player_coord(t_db *db);
 void			detect_best_direction(t_db *db);
 int				denote_piece(char *line, t_db *db);
+int				read_save_piece(t_db *db);
 int				place_piece(t_db *db);
 int				check_piece_fit(int y, int x, t_db *db);
 

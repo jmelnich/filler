@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 18:52:25 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/20 20:52:24 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/21 13:09:59 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,7 @@ static void visualize(t_visual *vs, char *line)
 	int	x;
 
 	system("clear");
-
-	// write(1, "💧", 4);
-	// printf(" : player O == %s\n", vs->player1);
-	// write(1, "🔥", 4);
-	// printf(" : player X == %s\n", vs->player2);
-	// printf("%s\n", line);
-	printf("💧 : player 0 == %s\n🔥 : player X == %s\n%s\n", vs->player1, vs->player2, line);
+	ft_printf("💧 : player 0 == %s\n🔥 : player X == %s\n%s\n", vs->player1, vs->player2, line);
 	ft_strdel(&line);
 	y = 0;
 	while (y < vs->mp_rows)
@@ -117,11 +111,11 @@ int check_line(t_visual *vs, char *line)
 	if (line[0] == '=')
 	{
 		if (!line)
-			write (1, "AA\n", 3);
-		printf("💧 :%s\n", line);
+			return (0);
+		ft_printf("💧 :%s\n", line);
 		ft_strdel(&line);
 		get_next_line(STDIN_FILENO, &line);
-		printf("🔥 :%s\n", line);
+		ft_printf("🔥 :%s\n", line);
 		ft_strdel(&line);
 		return (0);
 	}
@@ -131,39 +125,16 @@ int check_line(t_visual *vs, char *line)
 int	main(void)
 {
 	t_visual vs;
-	//int i;
 
 	char *line;
 	line = NULL;
 	skip_line(line, 6);
 	read_players(&vs, line);
 	denote_map_heigth(&vs, line);
-	//i = 0;
 	while (get_next_line(STDIN_FILENO, &line) > 0)
 	{
 		if (!check_line(&vs, line))
 			break ;
-		// if (line[0] == ' ')
-		// {
-		// 	visualize(&vs, line);
-		// 	get_next_line(STDIN_FILENO, &line);
-		// }
-		// if (line[1] == 'i')
-		// {
-		// 	denote_piece_heigth(&vs, line);
-		// 	skip_line(line, vs.pc_rows);
-		// }
-		// if (line[1] == 'g')
-		// 	get_next_line(STDIN_FILENO, &line);
-		// if (line[0] == '=')
-		// {
-		// 	printf("💧 :%s\n", line);
-		// 	ft_strdel(&line);
-		// 	get_next_line(STDIN_FILENO, &line);
-		// 	printf("🔥 :%s\n", line);
-		// 	ft_strdel(&line);
-		// 	break ;
-		// }
 	}
 	return (0);
 }

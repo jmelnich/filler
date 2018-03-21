@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:48:14 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/16 10:13:45 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/21 17:14:07 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static int	move_from_up_left(t_db *db)
 		{
 			if (check_piece_fit(y, x, db))
 			{
-				db->push_x = x - db->trim_cols_left;
-				db->push_y = y - db->trim_rows_up;
-				return (1); // we can place piece, return success
+				db->push_x = x - db->tcl;
+				db->push_y = y - db->trup;
+				return (1);
 			}
 			x++;
 		}
@@ -49,15 +49,15 @@ static int	move_from_up_right(t_db *db)
 		{
 			if (check_piece_fit(y, x, db))
 			{
-				db->push_x = x - db->trim_cols_left;
-				db->push_y = y - db->trim_rows_up;
+				db->push_x = x - db->tcl;
+				db->push_y = y - db->trup;
 				return (1);
 			}
 			x--;
 		}
-       y++;
+		y++;
 	}
-   return (0);
+	return (0);
 }
 
 static int	move_from_down_left(t_db *db)
@@ -73,15 +73,15 @@ static int	move_from_down_left(t_db *db)
 		{
 			if (check_piece_fit(y, x, db))
 			{
-				db->push_x = x - db->trim_cols_left;
-				db->push_y = y - db->trim_rows_up;
+				db->push_x = x - db->tcl;
+				db->push_y = y - db->trup;
 				return (1);
 			}
 			x++;
 		}
 		y--;
 	}
-   return (0);
+	return (0);
 }
 
 static int	move_from_down_right(t_db *db)
@@ -97,42 +97,28 @@ static int	move_from_down_right(t_db *db)
 		{
 			if (check_piece_fit(y, x, db))
 			{
-				db->push_x = x - db->trim_cols_left;
-				db->push_y = y - db->trim_rows_up;
+				db->push_x = x - db->tcl;
+				db->push_y = y - db->trup;
 				return (1);
 			}
 			x--;
 		}
 		y--;
 	}
-   return (0);
+	return (0);
 }
 
-int	place_piece(t_db *db)
+int			place_piece(t_db *db)
 {
 	int direction;
 
 	direction = db->direction;
-	//printf("\nWE GO %i\n", direction);
 	if (direction == 1 || direction == 5)
-	{
-		move_from_up_left(db);
-		return (1);
-	}
+		(move_from_up_left(db) == 1) ? return (1) : return (0); //добавить рекурсивно вызов других сторон
 	if (direction == 2)
-	{
-		move_from_up_right(db);
-		return (1);
-	}
+		(move_from_up_right(db) == 1) ? return (1) : return (0);
 	if (direction == 3)
-	{
-		move_from_down_left(db);
-		return (1);
-	}
+		(move_from_down_left(db) == 1) ? return (1) : return (0);
 	if (direction == 4)
-	{
-		move_from_down_right(db);
-		return (1);
-	}
-	return (0);
+		(move_from_down_right(db) == 1) ? return (1) : return (0); //wtf???
 }

@@ -6,16 +6,14 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 14:24:49 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/19 13:02:35 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/21 14:04:46 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int		set_players(t_db *db)
+int		set_players(char *line, t_db *db)
 {
-	char *line;
-
 	get_next_line(STDIN_FILENO, &line);
 	if (ft_strlen(line) < 10)
 	{

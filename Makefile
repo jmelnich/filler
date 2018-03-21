@@ -6,7 +6,7 @@
 #    By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/06 13:34:52 by imelnych          #+#    #+#              #
-#    Updated: 2018/03/20 20:10:16 by imelnych         ###   ########.fr        #
+#    Updated: 2018/03/21 13:22:23 by imelnych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ LB_DIR = ./libs
 SRC_DIR = ./src
 INC_DIR = ./includes
 LIBFT =  $(LB_DIR)/libft
-SRC_files = filler.c map.c players.c piece.c move.c place_piece_algo.c
+SRC_files = filler.c map.c players.c denote_piece.c move.c place_piece_algo.c \
+			trim_save_piece.c
 OBJ_files = $(SRC_files:.c=.o)
 OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_files))
 

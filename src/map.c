@@ -6,34 +6,34 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 15:02:02 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/20 20:34:08 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/21 17:07:07 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void	detect_best_direction(t_db *db)
+void		detect_best_direction(t_db *db)
 {
 	if (db->pl_coord_y >= db->mp_rows / 2 &&
 		db->pl_coord_x >= db->mp_cols / 2)
-		db->direction = 1; //going up and left
+		db->direction = 1;
 	else if (db->pl_coord_y >= db->mp_rows / 2 &&
 		db->pl_coord_x <= db->mp_cols / 2)
-		db->direction = 2; //going up and right
+		db->direction = 2;
 	else if (db->pl_coord_y <= db->mp_rows / 2 &&
 		db->pl_coord_x >= db->mp_cols / 2)
-		db->direction = 3; //going down and left
+		db->direction = 3;
 	else if (db->pl_coord_y <= db->mp_rows / 2 &&
 		db->pl_coord_x <= db->mp_cols / 2)
-		db->direction = 4; //going down and right
+		db->direction = 4;
 	else
-		db->direction = 5; //doesn't matter
+		db->direction = 5;
 }
 
-void	find_player_coord(t_db *db)
+void		find_player_coord(t_db *db)
 {
-	int x;
-	int y;
+	int		x;
+	int		y;
 
 	y = 0;
 	while (db->map[y])
@@ -45,6 +45,8 @@ void	find_player_coord(t_db *db)
 			{
 				db->pl_coord_x = x;
 				db->pl_coord_y = y;
+				db->found_pl = 1;
+				break ;
 			}
 			x++;
 		}
@@ -53,12 +55,11 @@ void	find_player_coord(t_db *db)
 	detect_best_direction(db);
 }
 
-int	read_save_map(char *line, t_db *db)
+int			read_save_map(char *line, t_db *db)
 {
-	int	i;
+	int		i;
 
 	i = 0;
-
 	ft_strdel(&line);
 	while (i < db->mp_rows)
 	{
@@ -69,12 +70,10 @@ int	read_save_map(char *line, t_db *db)
 	return (0);
 }
 
-int denote_map(t_db *db)
+static int	get_data_map(char *line, t_db *db)
 {
-	char	*line;
-	char	**arr;
+	char **arr;
 
-	get_next_line(STDIN_FILENO, &line);
 	arr = ft_strsplit(line, ' ');
 	ft_strdel(&line);
 	if (arr[1] && arr[2])
@@ -84,17 +83,25 @@ int denote_map(t_db *db)
 	}
 	else
 	{
+		if (arr)
+			ft_arrdel(&arr);
 		ft_putstr("Error: Invalid map coordinates\n");
-		ft_arrdel(&arr);
-		return (-1);
-	}
-	if (!(db->mp_rows) || !(db->mp_cols))
-	{
-		ft_putstr("Error: Map coordinates can't be null\n");
-		ft_arrdel(&arr);
 		return (-1);
 	}
 	ft_arrdel(&arr);
+	return (1);
+}
+
+int			denote_map(char *line, t_db *db)
+{
+	get_next_line(STDIN_FILENO, &line);
+	if (get_data_map(line, db) == -1)
+		return (-1);
+	if (!(db->mp_rows) || !(db->mp_cols))
+	{
+		ft_putstr("Error: Map coordinates can't be null\n");
+		return (-1);
+	}
 	db->map = ft_arrnew(db->mp_rows, db->mp_cols);
 	return (1);
 }
