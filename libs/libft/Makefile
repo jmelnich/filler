@@ -6,7 +6,7 @@
 #    By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/07 13:34:52 by imelnych          #+#    #+#              #
-#    Updated: 2018/03/18 14:38:16 by imelnych         ###   ########.fr        #
+#    Updated: 2018/03/21 11:42:21 by imelnych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,11 @@ SRC_files = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 		ft_strtrim.c ft_strsplit.c ft_itoa.c ft_putchar.c ft_putstr.c \
 		ft_putendl.c ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
 		ft_putnbr_fd.c ft_strrev.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c \
-		ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_letters_length.c ft_wordcount.c \
-		get_next_line.c ft_arrnew.c ft_arrdel.c ft_isdelim.c
+		ft_lstadd.c ft_lstiter.c ft_lstmap.c  ft_isdelim.c get_next_line.c \
+		ft_arrnew.c ft_arrdel.c ft_isdigit_char.c ft_numlen_max.c ft_strjoin_free.c \
+		print_address.c ft_printf.c print_digits.c print_digits_unsigned.c \
+		print_str.c print_unichar.c print_unicode.c check_type.c fill_type.c \
+		ft_itoabase.c ft_atoibase.c save_spec.c
 
 OBJ_files = $(SRC_files:.c=.o)
 OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_files))
