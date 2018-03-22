@@ -6,22 +6,23 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 18:52:25 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/21 13:09:59 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/22 11:01:36 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static void visualize(t_visual *vs, char *line)
+static void	visualize(t_visual *vs, char *line)
 {
 	int	y;
 	int	x;
 
 	system("clear");
-	ft_printf("💧 : player 0 == %s\n🔥 : player X == %s\n%s\n", vs->player1, vs->player2, line);
+	ft_printf("💧 : player 0 == %s\n🔥 : player X == %s\n%s\n",
+		vs->player1, vs->player2, line);
 	ft_strdel(&line);
-	y = 0;
-	while (y < vs->mp_rows)
+	y = -1;
+	while (++y < vs->mp_rows)
 	{
 		get_next_line(STDIN_FILENO, &line);
 		x = 0;
@@ -37,11 +38,10 @@ static void visualize(t_visual *vs, char *line)
 		}
 		write(1, "\n", 1);
 		ft_strdel(&line);
-		y++;
 	}
 }
 
-static void denote_piece_heigth(t_visual *vs, char *line)
+static void	denote_piece_heigth(t_visual *vs, char *line)
 {
 	char	**arr;
 
@@ -52,7 +52,7 @@ static void denote_piece_heigth(t_visual *vs, char *line)
 	ft_arrdel(&arr);
 }
 
-static void denote_map_heigth(t_visual *vs, char *line)
+static void	denote_map_heigth(t_visual *vs, char *line)
 {
 	char	**arr;
 
@@ -64,37 +64,7 @@ static void denote_map_heigth(t_visual *vs, char *line)
 	ft_arrdel(&arr);
 }
 
-static void skip_line(char *line, int times)
-{
-	int	i;
-
-	i = 0;
-	while (i < times)
-	{
-		get_next_line(STDIN_FILENO, &line);
-		ft_strdel(&line);
-		i++;
-	}
-}
-
-static void read_players(t_visual *vs, char *line)
-{
-
-	int lst;
-	get_next_line(STDIN_FILENO, &line);
-	vs->player1 = ft_strdup(line + 23);
-	ft_strdel(&line);
-	lst = ft_strlen(vs->player1);
-	vs->player1[lst - 1] = 0;
-	skip_line(line, 1);
-	get_next_line(STDIN_FILENO, &line);
-	vs->player2 = ft_strdup(line + 23);
-	ft_strdel(&line);
-	lst = ft_strlen(vs->player2);
-	vs->player2[lst - 1] = 0;
-}
-
-int check_line(t_visual *vs, char *line)
+int			check_line(t_visual *vs, char *line)
 {
 	if (line[0] == ' ')
 	{
@@ -122,11 +92,11 @@ int check_line(t_visual *vs, char *line)
 	return (1);
 }
 
-int	main(void)
+int			main(void)
 {
-	t_visual vs;
+	t_visual	vs;
+	char		*line;
 
-	char *line;
 	line = NULL;
 	skip_line(line, 6);
 	read_players(&vs, line);

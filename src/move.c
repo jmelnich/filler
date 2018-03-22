@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:48:14 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/21 17:14:07 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/22 10:37:07 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,15 +110,28 @@ static int	move_from_down_right(t_db *db)
 
 int			place_piece(t_db *db)
 {
-	int direction;
-
-	direction = db->direction;
-	if (direction == 1 || direction == 5)
-		(move_from_up_left(db) == 1) ? return (1) : return (0); //добавить рекурсивно вызов других сторон
-	if (direction == 2)
-		(move_from_up_right(db) == 1) ? return (1) : return (0);
-	if (direction == 3)
-		(move_from_down_left(db) == 1) ? return (1) : return (0);
-	if (direction == 4)
-		(move_from_down_right(db) == 1) ? return (1) : return (0); //wtf???
+	if (db->direction == 1 || db->direction == 5)
+	{
+		if (move_from_up_left(db) == 1)
+			return (1);
+		else
+			db->direction = 3;
+	}
+	if (db->direction == 2)
+	{
+		if (move_from_up_right(db) == 1)
+			return (1);
+		else
+			db->direction = 4;
+	}
+	if (db->direction == 3)
+	{
+		if (move_from_down_left(db) == 1)
+			return (1);
+		else
+			db->direction = 4;
+	}
+	if (db->direction == 4)
+		return (move_from_down_right(db) == 1) ? 1 : 0;
+	return (0);
 }

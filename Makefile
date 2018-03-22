@@ -6,7 +6,7 @@
 #    By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/06 13:34:52 by imelnych          #+#    #+#              #
-#    Updated: 2018/03/21 13:22:23 by imelnych         ###   ########.fr        #
+#    Updated: 2018/03/22 10:57:03 by imelnych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_files))
 
 VISUAL = visual
 OBJ_DIR_VISUAL = ./obj_visual
-SRC_files_visual = visual.c
+SRC_files_visual = visual.c helper.c
 OBJ_files_visual = $(SRC_files_visual:.c=.o)
 OBJ_VISUAL = $(addprefix $(OBJ_DIR_VISUAL)/, $(OBJ_files_visual))
 

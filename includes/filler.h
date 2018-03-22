@@ -6,7 +6,7 @@
 /*   By: imelnych <imelnych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 12:12:59 by imelnych          #+#    #+#             */
-/*   Updated: 2018/03/21 14:17:04 by imelnych         ###   ########.fr       */
+/*   Updated: 2018/03/22 10:56:45 by imelnych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,7 @@ int				denote_piece(char *line, t_db *db);
 int				read_save_piece(t_db *db);
 int				place_piece(t_db *db);
 int				check_piece_fit(int y, int x, t_db *db);
+void			read_players(t_visual *vs, char *line);
+void			skip_line(char *line, int times);
 
 #endif
