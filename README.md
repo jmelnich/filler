@@ -9,6 +9,9 @@ inputs/outputs.
 $> make
 
 # Usage
-./filler_vm -p1 players/imelnych.filler -p2 players/PLAYER_NAME.filler -v -f maps/map00
+```./filler_vm -p1 players/imelnych.filler -p2 players/PLAYER_NAME.filler -v -f maps/map00```
 or visualize with
-./filler_vm -p1 players/imelnych.filler -p2 players/PLAYER_NAME.filler -v -f maps/map00 | ./visual
+```./filler_vm -p1 players/imelnych.filler -p2 players/PLAYER_NAME.filler -v -f maps/map00 | ./visual```
+
+# Bugs & drawbacks
+The bot doesn't win in all the cases. It have an advantage on the big maps though.
