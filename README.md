@@ -1,9 +1,7 @@
 # Project Overview
 Filler is a 42 Project to learn about AI. The game to fight other students on the Filler board. The concept is simple: two players gain points by placing on a board "o" and "x", one after another. To put a piece it needs to overlap ONE player's cell and only ONE and not overlap any of the challengers cells. As a part of bonus, visualisation is implemented.
 
-<video width="320" height="240" controls>
-  <source src="filler.mov" type="video/mp4">
-</video>
+![visual](filler-visual.gif)
 
 # Goals
 The goal of this project is to introduce you to basic algorithm and to have you manipulate
