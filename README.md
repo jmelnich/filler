@@ -1,5 +1,49 @@
 # Project Overview
-Filler is a 42 Project to learn about AI. The game to fight other students on the Filler board. The concept is simple: two players gain points by placing on a board "o" and "x", one after another. To put a piece it needs to overlap ONE player's cell and only ONE and not overlap any of the challengers cells. As a part of bonus, visualisation is implemented.
+Filler is a 42 Project to learn about AI. The game to fight other students on the Filler board. The concept is simple: two players gain points by placing on a board "o" and "x", one after another. To put a piece it needs to overlap ONE player's cell and only ONE and not overlap any of the challengers cells.
+The figure comes as
+```
+,,,,
+,,,,
+,oo,
+,,o,
+```
+
+So, the figure is to be  
+```
+oo
+,o
+```
+
+The field
+```
+*.......
+........
+........
+........
+........
+```
+
+To stick the figure on the field to my * player,
+```
+,,,,
+,,,,
+,oo,.....
+,,o,.....
+ ........
+ ........
+ ........
+ ```
+ 
+ The result
+ ```
+oo......
+.o......
+........
+........
+........
+```
+
+As a part of bonus, visualisation is implemented.
 
 ![visual](filler-visual.gif)
 
